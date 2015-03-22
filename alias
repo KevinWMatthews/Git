@@ -1,0 +1,61 @@
+Storing my git aliases
+
+
+[alias]
+#aliasis for git am
+	ama = am --abort
+
+#aliases for adding files
+	a    = add
+	aa   = add -A
+	ae   = add -e
+	ai   = add -i
+
+#aliases for branches
+	br = branch
+	co = checkout
+	rst-h = reset --hard
+
+#aliases for cherry-picking
+	cp  = cherry-pick
+	cpc = cherry-pick --continue
+	cpa = cherry-pick --abort
+
+#aliases for committing files
+	c    = commit
+	ca   = commit -a
+	cm   = commit -m
+	cam  = commit -a -m
+	camd = commit --amend
+	caa  = commit -a --amend -C HEAD
+
+#aliases for diffs
+	d   = diff
+	wd  = diff --word-diff
+	dt  = difftool
+	dc  = diff --cached
+	wdc = diff --cached --word-diff
+	dtc = difftool --cached
+
+#aliases for pretty logs
+	hist = log --pretty=format:\"%C(cyan)%h %C(yellow)%ad %C(reset)| %s%C(bold red)%d %C(reset)%C(green)[%an]\" --graph --date=short
+	histc = !"clear; git log --pretty=format:\"%C(cyan)%h %C(yellow)%ad %C(reset)| %s%C(bold red)%d %C(reset)%C(green)[%an]\" --graph --date=short"
+
+#aliases for merging
+	m  = merge
+	mc = merge --continue
+	ma = merge --abort
+	mt = mergetool
+
+#aliases for rebasing
+	rb  = rebase
+	rba = rebase --abort
+	irb = !sh -c 'git rebase -i HEAD~$1' -
+	rbc = rebase --continue
+
+#aliases for status/staging
+	s  = status -s
+	st = status
+	unstage = reset HEAD --
+	last = difftool HEAD~ HEAD
+
