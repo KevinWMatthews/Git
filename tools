@@ -1,0 +1,19 @@
+[diff]
+	tool = bc3
+[difftool "bc3"]
+	bc3 = trustExitCode
+	prompt = false
+		#Windows
+	#path = C:/Program Files (x86)/Beyond Compare 4/BComp.exe
+		#Linux
+
+[merge]
+	tool = bc3
+[mergetool "bc3"]
+	prompt = false
+	keepbackup = false
+	keeptemporaries = false
+		#Windows
+	#path = C:/Program Files (x86)/Beyond Compare 4/BComp.exe
+		#Linux
+	bc3 = trustExitCode
