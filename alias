@@ -1,61 +1,77 @@
 Storing my git aliases
 
+On Windows .gitconfig is located in C:\Users\Kevin
+In Cygwin .gitconfig is located in C:\cygwin64\home\Kevin
 
 [alias]
-#aliasis for git am
+#am
 	ama = am --abort
 
-#aliases for adding files
-	a    = add
-	aa   = add -A
-	ae   = add -e
-	ai   = add -i
+#add
+	a  = add
+	aa = add -A
+	ae = add -e
+	ai = add -i
+	ad = !git add -A && git diff --cached
 
-#aliases for branches
+#branch
 	br = branch
-	co = checkout
-	rst-h = reset --hard
+	#branch switch :) Yes, you need the '-'. Figure this out!
+	brsw = "!sh -c 'git br -m $1 __;\
+		git br -m $2 $1;\
+		git br -m __ $2;\
+#		git br -u origin/$1 $2;\
+#		git br -u origin/$2 $1\
+		'" -
 
-#aliases for cherry-picking
+#cherry-pick
 	cp  = cherry-pick
 	cpc = cherry-pick --continue
 	cpa = cherry-pick --abort
 
-#aliases for committing files
+#commit
 	c    = commit
+	ci   = commit
 	ca   = commit -a
 	cm   = commit -m
 	cam  = commit -a -m
 	camd = commit --amend
 	caa  = commit -a --amend -C HEAD
 
-#aliases for diffs
+#checkout
+	co = checkout
+
+#diff
 	d   = diff
 	wd  = diff --word-diff
 	dt  = difftool
 	dc  = diff --cached
+	dcc = diff --cached --check
 	wdc = diff --cached --word-diff
 	dtc = difftool --cached
 
-#aliases for pretty logs
+#log
+	sl = shortlog
 	hist = log --pretty=format:\"%C(cyan)%h %C(yellow)%ad %C(reset)| %s%C(bold red)%d %C(reset)%C(green)[%an]\" --graph --date=short
 	histc = !"clear; git log --pretty=format:\"%C(cyan)%h %C(yellow)%ad %C(reset)| %s%C(bold red)%d %C(reset)%C(green)[%an]\" --graph --date=short"
 
-#aliases for merging
+#merge
 	m  = merge
 	mc = merge --continue
 	ma = merge --abort
 	mt = mergetool
 
-#aliases for rebasing
+#rebase
 	rb  = rebase
 	rba = rebase --abort
 	irb = !sh -c 'git rebase -i HEAD~$1' -
 	rbc = rebase --continue
 
-#aliases for status/staging
+#reset
+	rh = reset --hard
+
+#status/staging
 	s  = status -s
 	st = status
 	unstage = reset HEAD --
 	last = difftool HEAD~ HEAD
-
