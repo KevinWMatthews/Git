@@ -2,6 +2,7 @@ Storing my git aliases
 
 On Windows .gitconfig is located in C:\Users\Kevin
 In Cygwin .gitconfig is located in C:\cygwin64\home\Kevin
+On Linux .gitconfig is located in ~/
 
 [alias]
 #am
