@@ -17,13 +17,6 @@ On Linux .gitconfig is located in ~/
 
 #branch
 	br = branch
-	#branch switch :) Yes, you need the '-'. Figure this out!
-	brsw = "!sh -c 'git br -m $1 __;\
-		git br -m $2 $1;\
-		git br -m __ $2;\
-#		git br -u origin/$1 $2;\
-#		git br -u origin/$2 $1\
-		'" -
 
 #cherry-pick
 	cp  = cherry-pick
