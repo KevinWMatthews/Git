@@ -1,0 +1,92 @@
+#!/bin/sh
+#
+# git-hist-n.sh
+#
+# This will be a -n or --numbered option on my standard hist and histc commands, but during development it is a separate script.
+#
+# On Windows, this file should be located in: C:\Program Files (x86)\Git\libexec\git-core
+# with the name git-hist-n
+
+#parameter1 contains the first (older) commit while parameter 2 should contain a newer commit
+#currently listed as HEAD~<n> but want more comprehensive support of git revisions later.
+
+#check parameter 1 for proper data and prompt for input if absent
+
+#check parameter 2 for proper data and prompt for input if absent
+
+#update to accept revision ranges with ..
+
+#determine if number of commits has one or two digits. Then line up the history correctly.
+#truncate output? better, display off the left of the screen. git commands do this fine but echo is more clunky. maybe printf?
+
+#  ***Read parameters***
+
+# expr returns:
+  # 0 if EXPRESSION is neither null nor 0
+  # 1 if EXPRESSION is null or 0
+  # 2 if EXPRESSION is syntactically invalid (non-numeric, for example)
+  # 3 if an error occurred
+expr $1 + 0 > /dev/null 2>&1    #- can break this test! It evaluates to the number 0, which then yields HEAD~0
+if [ $? -ge 2 ]
+then
+  #syntax error, i.e. non-numeric data
+  since_rev=${1:-HEAD}    # If null, default to HEAD
+else
+  since_rev=HEAD~$1
+fi
+# echo $since_rev
+echo
+
+#test to see if $2 contains a number. If null, default to HEAD.
+expr $2 + 0 > /dev/null 2>&1
+#expr returns >= 2 if trying to evaluate a non-integer value, 0 or 1 if evaluating an integer value
+if [ $? -ge 2 ]
+then
+  until_rev=${2:-HEAD}
+else
+  until_rev=HEAD~$2
+fi
+# echo $until_rev
+
+#  ***Parse parameters***
+#parse parameter 1
+since_rev=`git rev-parse $since_rev`    #TODO how to suppress git's error messages?
+if [ $? != 0 ]
+then
+  echo -e "\n\E[31mError: Start of commit range not found! git rev-parse $since_rev failed."
+  exit
+fi
+# echo $since_rev
+
+#parse parameter 2
+until_rev=`git rev-parse $until_rev`
+if [ $? != 0 ]
+then
+  echo -e "\n\E[31mError: End of commit range not found! git rev-parse $until_rev failed."
+  exit
+fi
+# echo $until_rev
+
+#  ***Derive the number of commits to show in the log***
+ncommits=`git rev-list $since_rev..$until_rev --count`
+if [ $? != 0 ]
+then
+  echo -e "\n\E[31mError: git rev-list $since_rev..$until_rev failed!"
+  exit
+fi
+
+#TODO clean up this error message
+if [ $ncommits -eq 0 ]
+then
+  echo -e "\n\E[31mError: <until> commit is not after <since> commit in the history!"
+  #TODO make this a fancier error message
+  echo -e "\n\E[31m${until_rev}\ndoes not follow\n$since_rev"
+  exit
+fi
+# echo $ncommits
+
+#  ***Print the history***
+for (( i=0; i<ncommits; i++ ))
+do
+  git log --pretty=format:"%C(cyan)%h %C(yellow)%ad%C(reset) | %s%C(bold red)%d%C(reset) %C(green)[%an]%C(reset)" --graph --date=short ${until_rev}~$i -1 | xargs echo -e "\E[35m`expr $i + 1`:\E[0m"
+done
