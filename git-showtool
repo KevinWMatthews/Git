@@ -1,0 +1,38 @@
+#!/bin/sh
+#
+# git-difftool
+#
+#Create a git showtool command modeled after the git difftool command.
+#Show the diff of the specified commit using the user's difftool.
+#
+# To use this custom terminal command, copy this file to /usr/lib/git-core
+# Set its permissions to executable with sudo chmod +x <filename>
+#
+#To configure your difftool to Beyond Compare 4,
+# $ git config --global diff.tool bc3
+# $ git config --global difftool.bc3 trustExitCode true
+# $ git config --global difftool.prompt false
+
+#user enters rev
+
+#launch difftool rev rev~
+
+#ensure that rev is valid?
+#does it matter what branch we're on? I don't think so....
+
+#do we need to convert the rev to a sha?
+#rev could be given as:
+  # a sha
+  # branch^n
+  # branch~n
+  # other ways that I'm not yet familiar with
+
+if [ -z $1 ]
+then
+  echo -e "Please enter a commit to show: \c"
+  read rev
+else
+  rev=$1
+fi
+
+git difftool $(git rev-parse ${rev}~) $(git rev-parse $rev)
