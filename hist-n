@@ -1,11 +1,12 @@
 #!/bin/sh
 #
-# git-hist-n.sh
+# git-hist-n
 #
 # This will be a -n or --numbered option on my standard hist and histc commands, but during development it is a separate script.
 #
-# On Windows, this file should be located in: C:\Program Files (x86)\Git\libexec\git-core
-# with the name git-hist-n
+# On Windows, this file should be located in: C:\Program Files (x86)\Git\libexec\git-core (Cygwin) or C:\Program Files\Git\libexec\git-core (MinGw)
+# On Linux, this file should be located in: /usr/lib/git-core
+# On Mac, this file should be located in: ?
 
 #parameter1 contains the first (older) commit while parameter 2 should contain a newer commit
 #currently listed as HEAD~<n> but want more comprehensive support of git revisions later.
