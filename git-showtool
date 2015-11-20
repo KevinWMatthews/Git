@@ -35,4 +35,4 @@ else
   rev=$1
 fi
 
-git difftool $(git rev-parse ${rev}~) $(git rev-parse $rev)
+git difftool $(git rev-parse ${rev}~) $(git rev-parse $rev) $2
