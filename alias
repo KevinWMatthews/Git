@@ -14,6 +14,8 @@ On Linux .gitconfig is located in ~/
 	ae = add -e
 	ai = add -i
 	ad = !git add -A && git diff --cached
+    ap = add -p
+	as = !git add -A && git status
 
 #branch
 	br = branch
@@ -42,12 +44,16 @@ On Linux .gitconfig is located in ~/
 	dc  = diff --cached
 	dcc = diff --cached --check
 	wdc = diff --cached --word-diff
+    ds  = diffstat
 	dtc = difftool --cached
 
 #log
 	sl = shortlog
 	hist = log --pretty=format:\"%C(cyan)%h %C(yellow)%ad %C(reset)| %s%C(bold red)%d %C(reset)%C(green)[%an]\" --graph --date=short
 	histc = !"clear; git log --pretty=format:\"%C(cyan)%h %C(yellow)%ad %C(reset)| %s%C(bold red)%d %C(reset)%C(green)[%an]\" --graph --date=short"
+	visual = !gitk
+	vis = !gitk
+	visa = !gitk --all
 
 #merge
 	m  = merge
@@ -69,3 +75,16 @@ On Linux .gitconfig is located in ~/
 	st = status
 	unstage = reset HEAD --
 	last = difftool HEAD~ HEAD
+
+[diff]
+	tool = bc3
+[difftool]
+	bc3 = trustExitCode
+	prompt = false
+[merge]
+	tool = bc3
+[mergetool]
+	bc3 = trustExitCode
+    keepBackup = false
+[push]
+	default = simple
