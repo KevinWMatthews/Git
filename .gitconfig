@@ -1,8 +1,20 @@
-Storing my git aliases
+[core]
+	editor = vi
+	pager = less -x1,5
 
-On Windows .gitconfig is located in C:\Users\Kevin
-In Cygwin .gitconfig is located in C:\cygwin64\home\Kevin
-On Linux .gitconfig is located in ~/
+[push]
+	default = matching
+
+[diff]
+	tool = bc3
+[difftool]
+	bc3 = trustExitCode
+	prompt = false
+[merge]
+	tool = bc3
+[mergetool]
+	bc3 = trustExitCode
+    keepBackup = false
 
 [alias]
 #am
@@ -75,16 +87,3 @@ On Linux .gitconfig is located in ~/
 	st = status
 	unstage = reset HEAD --
 	last = difftool HEAD~ HEAD
-
-[diff]
-	tool = bc3
-[difftool]
-	bc3 = trustExitCode
-	prompt = false
-[merge]
-	tool = bc3
-[mergetool]
-	bc3 = trustExitCode
-    keepBackup = false
-[push]
-	default = simple
