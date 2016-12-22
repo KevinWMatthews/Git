@@ -14,7 +14,7 @@
 	tool = bc3
 [mergetool]
 	bc3 = trustExitCode
-    keepBackup = false
+	keepBackup = false
 
 [alias]
 #am
@@ -26,7 +26,7 @@
 	ae = add -e
 	ai = add -i
 	ad = !git add -A && git diff --cached
-    ap = add -p
+	ap = add -p
 	as = !git add -A && git status
 
 #branch
@@ -56,14 +56,15 @@
 	dc  = diff --cached
 	dcc = diff --cached --check
 	wdc = diff --cached --word-diff
-    ds  = diffstat
+	ds  = diffstat
 	dtc = difftool --cached
 
 #log
+    l = "!f() { clear; if [ -z \"$1\" ]; then RANGE='-'; else RANGE="$1"; fi; git log -\"$RANGE\"; }; f"
 	sl = shortlog
 	hist = log --pretty=format:\"%C(cyan)%h %C(yellow)%ad %C(reset)| %s%C(bold red)%d %C(reset)%C(green)[%an]\" --graph --date=short
 	histc = !"clear; git log --pretty=format:\"%C(cyan)%h %C(yellow)%ad %C(reset)| %s%C(bold red)%d %C(reset)%C(green)[%an]\" --graph --date=short"
-    h = !"clear; git log --pretty=format:\"%C(cyan)%h %C(yellow)%ad %C(reset)| %s%C(bold red)%d %C(reset)%C(green)[%an]\" --graph --date=short"
+	h = !"clear; git log --pretty=format:\"%C(cyan)%h %C(yellow)%ad %C(reset)| %s%C(bold red)%d %C(reset)%C(green)[%an]\" --graph --date=short"
 	visual = !gitk
 	v = !gitk
 	va = !gitk --all
@@ -77,7 +78,8 @@
 #rebase
 	rb  = rebase
 	rba = rebase --abort
-	irb = !sh -c 'git rebase -i HEAD~$1' -
+	irb = "!f() { git rebase -i HEAD~\"$1\"; }; f"
+	# irb = !sh -c 'git rebase -i HEAD~"$1"' -
 	rbc = rebase --continue
 
 #reset
