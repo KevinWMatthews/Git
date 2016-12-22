@@ -1,0 +1,31 @@
+#!/bin/sh
+#
+# git-difftool
+#
+# Quick way to show the git diff --stat between two commits
+#
+# To use this custom git command, copy this file to /usr/lib/git-core
+# Set its permissions to executable with sudo chmod +x <filename>
+
+#Prompt user for commit (rev)
+#Launch: git diff --stat rev~ rev
+
+#TODO
+#  ensure that rev is valid?
+#  does it matter what branch we're on? I don't think so....
+
+#rev could be given as:
+  # a sha
+  # branch^n
+  # branch~n
+  # other ways that I'm not yet familiar with
+
+if [ -z $1 ]
+then
+  echo "Please enter a commit to show: \c"
+  read rev
+else
+  rev=$1
+fi
+
+git diff --stat $(git rev-parse ${rev}~) $(git rev-parse $rev)

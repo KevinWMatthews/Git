@@ -63,9 +63,10 @@
 	sl = shortlog
 	hist = log --pretty=format:\"%C(cyan)%h %C(yellow)%ad %C(reset)| %s%C(bold red)%d %C(reset)%C(green)[%an]\" --graph --date=short
 	histc = !"clear; git log --pretty=format:\"%C(cyan)%h %C(yellow)%ad %C(reset)| %s%C(bold red)%d %C(reset)%C(green)[%an]\" --graph --date=short"
+    h = !"clear; git log --pretty=format:\"%C(cyan)%h %C(yellow)%ad %C(reset)| %s%C(bold red)%d %C(reset)%C(green)[%an]\" --graph --date=short"
 	visual = !gitk
-	vis = !gitk
-	visa = !gitk --all
+	v = !gitk
+	va = !gitk --all
 
 #merge
 	m  = merge
